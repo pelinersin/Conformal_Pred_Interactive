@@ -156,7 +156,10 @@ with st.sidebar:
 """, unsafe_allow_html=True)
 
 # ── Main content ──────────────────────────────────────────────────────────────
-st.markdown("<p style='font-size:30px;'>Interactive Conformal Prediction</p>")
+st.markdown(
+    "<p style='font-size:30px;'>Interactive Conformal Prediction</p>",
+    unsafe_allow_html=True
+)
 st.markdown(
     "<p style='color:#999795;font-size:0.9rem;margin-top:-0.5rem;'>Split conformal intervals · marginal coverage guarantee</p>",
     unsafe_allow_html=True,
