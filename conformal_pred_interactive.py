@@ -140,7 +140,7 @@ def generate_and_fit(n, model_name, dist_name):
 
 # ── Sidebar controls ──────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("##Controls")
+    st.markdown("Controls")
     st.markdown("---")
 
     n = st.slider("Sample size  (n)", min_value=100, max_value=1000, value=1000, step=100)
@@ -156,7 +156,7 @@ with st.sidebar:
 """, unsafe_allow_html=True)
 
 # ── Main content ──────────────────────────────────────────────────────────────
-st.markdown("#Interactive Conformal Prediction")
+st.markdown("<p style='font-size:5rem;'>Interactive Conformal Prediction")
 st.markdown(
     "<p style='color:#999795;font-size:0.9rem;margin-top:-0.5rem;'>Split conformal intervals · marginal coverage guarantee</p>",
     unsafe_allow_html=True,
