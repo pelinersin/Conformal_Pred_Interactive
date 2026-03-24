@@ -160,10 +160,6 @@ st.markdown(
     "<p style='font-size:3rem;'>Interactive Conformal Prediction</p>",
     unsafe_allow_html=True
 )
-st.markdown(
-    "<p style='color:#999795;font-size:0.9rem;margin-top:-0.5rem;'>Split conformal intervals · marginal coverage guarantee</p>",
-    unsafe_allow_html=True,
-)
 
 with st.spinner("Fitting model…"):
     data = generate_and_fit(n, model_name, dist_name)
