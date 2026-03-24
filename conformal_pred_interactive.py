@@ -157,7 +157,7 @@ with st.sidebar:
 
 # ── Main content ──────────────────────────────────────────────────────────────
 st.markdown(
-    "<p style='font-size:30px;'>Interactive Conformal Prediction</p>",
+    "<p style='font-size:5rem;'>Interactive Conformal Prediction</p>",
     unsafe_allow_html=True
 )
 st.markdown(
