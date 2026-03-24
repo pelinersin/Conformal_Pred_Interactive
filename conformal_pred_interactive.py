@@ -11,8 +11,8 @@ from sklearn.model_selection import train_test_split
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Conformal Prediction Explorer",
-    page_icon="📐",
+    page_title="Interactive Conformal Prediction",
+    page_icon="",
     layout="wide",
 )
 
@@ -100,7 +100,7 @@ model_names = [
     "Ridge Regression",
     "Random Forest",
     "Gradient Boosting",
-    "SVR",
+    "Support Vector Regression",
     "KNN",
 ]
 
@@ -108,10 +108,10 @@ def get_model(name):
     return {
         "Linear Regression":  LinearRegression(),
         "Ridge Regression":   Ridge(alpha=1.0),
-        "Random Forest":      RandomForestRegressor(n_estimators=100, random_state=42),
+        "Random Forest":    RandomForestRegressor(n_estimators=100, random_state=42),
         "Gradient Boosting":  GradientBoostingRegressor(n_estimators=100, random_state=42),
-        "SVR":                SVR(),
-        "KNN":                KNeighborsRegressor(n_neighbors=20),
+        "upport Vector Regression":    SVR(),
+        "KNN": KNeighborsRegressor(n_neighbors=20),
     }[name]
 
 # ── Cached computation ────────────────────────────────────────────────────────
@@ -140,7 +140,7 @@ def generate_and_fit(n, model_name, dist_name):
 
 # ── Sidebar controls ──────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("## 📐 Controls")
+    st.markdown("##Controls")
     st.markdown("---")
 
     n = st.slider("Sample size  (n)", min_value=100, max_value=1000, value=1000, step=100)
@@ -152,17 +152,11 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("""
 <div style='font-family:Space Mono,monospace;font-size:0.65rem;color:#aaa8a5;line-height:1.7;'>
-CONFORMAL PREDICTION<br>
-guarantees marginal coverage<br>
-≥ 1−α on exchangeable data.<br><br>
-Residuals from a held-out<br>
-calibration set define the<br>
-interval width q.
 </div>
 """, unsafe_allow_html=True)
 
 # ── Main content ──────────────────────────────────────────────────────────────
-st.markdown("# Conformal Prediction Explorer")
+st.markdown("#Interactive Conformal Prediction")
 st.markdown(
     "<p style='color:#999795;font-size:0.9rem;margin-top:-0.5rem;'>Split conformal intervals · marginal coverage guarantee</p>",
     unsafe_allow_html=True,
@@ -274,17 +268,3 @@ leg = ax.legend(
 
 st.pyplot(fig, use_container_width=True)
 plt.close(fig)
-
-# ── Score distribution ─────────────────────────────────────────────────────
-with st.expander("Calibration score distribution"):
-    fig2, ax2 = plt.subplots(figsize=(9, 3))
-    ax2.hist(scores, bins=40, color="#2563eb", alpha=0.5, edgecolor="none")
-    ax2.axvline(q, color="#d97706", linewidth=1.5, linestyle="--",
-                label=f"q = {q:.3f}  (level {q_level:.3f})")
-    ax2.set_xlabel("Residual magnitude  |y − ŷ|", fontsize=9)
-    ax2.set_ylabel("Count", fontsize=9)
-    ax2.set_title("Calibration nonconformity scores", fontsize=9, color="#888683")
-    ax2.grid(True)
-    ax2.legend(framealpha=0, labelcolor="#444240", fontsize=9)
-    st.pyplot(fig2, use_container_width=True)
-    plt.close(fig2)
