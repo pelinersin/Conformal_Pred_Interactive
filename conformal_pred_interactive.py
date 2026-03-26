@@ -110,7 +110,7 @@ def get_model(name):
         "Ridge Regression":   Ridge(alpha=1.0),
         "Random Forest":    RandomForestRegressor(n_estimators=100, random_state=42),
         "Gradient Boosting":  GradientBoostingRegressor(n_estimators=100, random_state=42),
-        "upport Vector Regression":    SVR(),
+        "Support Vector Regression":    SVR(),
         "KNN": KNeighborsRegressor(n_neighbors=20),
     }[name]
 
